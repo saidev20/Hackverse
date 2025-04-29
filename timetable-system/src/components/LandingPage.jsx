@@ -23,9 +23,14 @@ const LandingPage = () => {
     return (
         <div className="login-wrapper">
             <div className="login-left">
-                <img src="/logo.png" alt="Logo" className="login-logo" />
-                <h1>Welcome to</h1>
-                <h2>Sahyadri Digital Campus</h2>
+                <div className="logo-group">
+                    <img src="/logo.png" alt="Logo 1" className="login-logo" />
+                    <img src="/logo2.jpg" alt="Logo 2" className="login-logo second-logo" />
+                </div>
+                <div className="welcome-text">
+                    <h1 className="welcome-text">Welcome to,<br></br>TimeTable Management System</h1>
+                        {/* <h2 className="welcome-text">TimeTable Management System</h2> */}
+                </div>
             </div>
 
             <div className="login-right">
