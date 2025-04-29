@@ -1,82 +1,114 @@
-/* LandingPage.css */
-.landing-container {
+/* Full background layout */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.login-wrapper {
+    height: 100vh;
+    background-image: url('/background.png'); /* Path to your background image */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: row; /* Ensures left and right panels are side by side */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Left panel */
+.login-left {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.5); /* Optional dark overlay */
+    color: white;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
+    padding: 40px;
     text-align: center;
+    height: 100%; /* Ensures it spans the full height */
 }
 
-.landing-header {
-    width: 100%;
-    padding: 10px;
-    background-color: #001f3d; /* Dark Blue for your institute */
-    color: white;
+.login-left h1 {
+    font-size: 28px;
+    margin-top: 10px;
+    font-weight: 600;
 }
 
-.institution-logo {
-    width: 150px;
+.login-left h2 {
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.login-logo {
+    width: 120px;
     height: auto;
-}
-
-.hero-image {
-    width: 100%;
-    margin-top: 20px;
-}
-
-.hero-img {
-    width: 100%;
-    height: 400px;
-    object-fit: cover;
-}
-
-.landing-content {
-    margin-top: 30px;
-}
-
-.landing-content h1 {
-    font-size: 36px;
-    color: #003366; /* Custom dark color */
-}
-
-.landing-content p {
-    font-size: 18px;
-    color: #444;
-}
-
-.login-section {
-    margin-top: 40px;
-    background-color: #ffffff;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    max-width: 400px;
-    margin: 20px;
-}
-
-.login-section h2 {
-    font-size: 24px;
-    color: #003366;
     margin-bottom: 20px;
 }
 
-.input-group {
-    margin-bottom: 15px;
+/* Right panel */
+.login-right {
+    flex: 1;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    border-top-left-radius: 60px;
+    border-bottom-left-radius: 60px;
+    box-shadow: -4px 0 15px rgba(0, 0, 0, 0.1);
+    height: 100%; /* Ensures it spans the full height */
 }
 
-.input-group label {
-    display: block;
+.login-title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.login-form {
+    width: 100%;
+    max-width: 350px;
+}
+
+/* Input with icon */
+.input-icon-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: #e0ebff;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.input-icon-group .icon {
+    font-size: 18px;
+    margin-right: 10px;
+    color: #004aad;
+}
+
+.input-icon-group input {
+    flex: 1;
+    background: none;
+    border: none;
+    font-size: 16px;
+    outline: none;
+}
+
+/* Checkbox */
+.checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
     font-size: 14px;
     color: #333;
 }
 
-.input-group input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
+/* Button */
 .login-btn {
     width: 100%;
     padding: 12px;
@@ -84,16 +116,19 @@
     color: white;
     font-size: 18px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
 }
 
 .login-btn:hover {
     background-color: #003366;
 }
 
+/* Error message */
 .error-message {
     color: red;
     font-size: 14px;
-    text-align: center;
-    margin-top: 10px;
+    margin-top: 8px;
 }
