@@ -22,59 +22,58 @@ const LandingPage = () => {
 
     return (
         <div className="landing-page">
-        <div className="login-wrapper">
-            <div className="login-left">
-                <div className="logo-group">
-                    <img src="/logo.png" alt="Logo 1" className="login-logo" />
-                    <img src="/logo2.jpg" alt="Logo 2" className="login-logo second-logo" />
+            <div className="glass-card">
+                <div className="logo-corner">
+                    <img src="/logo.png" alt="Logo 1" className="corner-logo" />
                 </div>
-                <div className="welcome-text">
-                    <h1 className="welcome-text">Welcome to,<br></br>TimeTable Management System</h1>
-                        {/* <h2 className="welcome-text">TimeTable Management System</h2> */}
+                <div className="login-left">
+                    <div className="welcome-message">
+                        <h1>Welcome to</h1>
+                        <h2>TimeTable Management System</h2>
+                    </div>
+                </div>
+
+                <div className="login-right">
+                    <h2 className="login-title">Secure Login</h2>
+                    <form className="login-form" onSubmit={handleLogin}>
+                        <div className="input-group">
+                            <FaEnvelope className="icon" />
+                            <input
+                                type="text"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                                required
+                            />
+                            <label className={username && 'filled'}>Login ID</label>
+                        </div>
+
+                        <div className="input-group">
+                            <FaLock className="icon" />
+                            <input
+                                type={showPassword ? 'text' : 'password'}
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                            />
+                            <label className={password && 'filled'}>Password</label>
+                        </div>
+
+                        <div className="checkbox-row">
+                            <input
+                                type="checkbox"
+                                id="showPassword"
+                                checked={showPassword}
+                                onChange={() => setShowPassword(!showPassword)}
+                            />
+                            <label htmlFor="showPassword">Show Password</label>
+                        </div>
+
+                        {loginError && <p className="error-message">{loginError}</p>}
+
+                        <button type="submit" className="login-btn">LOGIN</button>
+                    </form>
                 </div>
             </div>
-
-            <div className="login-right">
-                <h2 className="login-title">Login</h2>
-                <form className="login-form" onSubmit={handleLogin}>
-                    <div className="input-icon-group">
-                        <FaEnvelope className="icon" />
-                        <input
-                            type="text"
-                            placeholder="Login ID"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                            required
-                        />
-                    </div>
-
-                    <div className="input-icon-group">
-                        <FaLock className="icon" />
-                        <input
-                            type={showPassword ? 'text' : 'password'}
-                            placeholder="Password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                        />
-                    </div>
-
-                    <div className="checkbox-row">
-                        <input
-                            type="checkbox"
-                            id="showPassword"
-                            checked={showPassword}
-                            onChange={() => setShowPassword(!showPassword)}
-                        />
-                        <label htmlFor="showPassword">Show Password</label>
-                    </div>
-
-                    {loginError && <p className="error-message">{loginError}</p>}
-
-                    <button type="submit" className="login-btn">LOGIN</button>
-                </form>
-            </div>
-        </div>
         </div>
     );
 };
