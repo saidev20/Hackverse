@@ -21,6 +21,7 @@ const LandingPage = () => {
     };
 
     return (
+        <div className="landing-page">
         <div className="login-wrapper">
             <div className="login-left">
                 <div className="logo-group">
@@ -73,6 +74,7 @@ const LandingPage = () => {
                     <button type="submit" className="login-btn">LOGIN</button>
                 </form>
             </div>
+        </div>
         </div>
     );
 };

@@ -5,12 +5,16 @@ body, html {
     height: 100%;
     width: 100%;
     font-family: 'Segoe UI', sans-serif;
-    background-image: url('/background.png'); /* Replace with your actual image path */
     background-size: cover;
     background-position: center;
     overflow: hidden;
 }
 
+.landing-page {
+    background-image: url('/background.png');
+    background-size: cover;
+    background-position: center;
+}
 /* Logo group styles */
 .logo-group {
     display: flex;
