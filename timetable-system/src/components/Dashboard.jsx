@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-
+import Tabs from "./Tabs";
 import { Line } from "react-chartjs-2";
+import "./Dashboard.css";
 
 const Dashboard = () => {
   const [teacher, setTeacher] = useState({ name: "", id: "" });
@@ -26,58 +27,46 @@ const Dashboard = () => {
     ],
   };
 
+  const tabs = {
+    "Admin Input": (
+      <div className="dashboard-container">
+        <h2>Add Teacher</h2>
+        <input placeholder="Name" name="name" value={teacher.name} onChange={handleTeacherChange} />
+        <input placeholder="ID" name="id" value={teacher.id} onChange={handleTeacherChange} />
+
+        <h2>Add Subject</h2>
+        <input placeholder="Subject Name" name="name" value={subject.name} onChange={handleSubjectChange} />
+        <input placeholder="Code" name="code" value={subject.code} onChange={handleSubjectChange} />
+        <input placeholder="Credits" name="credits" type="number" value={subject.credits} onChange={handleSubjectChange} />
+        <label style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <input type="checkbox" checked={subject.isLab} onChange={handleLabChange} /> Lab Subject
+        </label>
+
+        <h2>Batch & Section</h2>
+        <input placeholder="Year" name="year" value={batchSection.year} onChange={handleBatchChange} />
+        <input placeholder="Section" name="section" value={batchSection.section} onChange={handleBatchChange} />
+        <button className="generate-btn">Submit Data</button>
+      </div>
+    ),
+    "Overview": (
+      <div className="dashboard-container">
+        <h2>Input Summary</h2>
+        <p><strong>Teacher:</strong> {teacher.name} ({teacher.id})</p>
+        <p><strong>Subject:</strong> {subject.name} ({subject.code}) - {subject.credits} credits {subject.isLab && "[Lab]"}</p>
+        <p><strong>Batch:</strong> Year {batchSection.year}, Section {batchSection.section}</p>
+      </div>
+    ),
+    "Fitness Tracker": (
+      <div className="dashboard-container">
+        <h2>Fitness Evolution</h2>
+        <Line data={fitnessChart} />
+      </div>
+    ),
+  };
+
   return (
-    <div className="p-6 grid gap-6">
-      <Tabs defaultValue="input">
-        <TabsList>
-          <TabsTrigger value="input">Admin Input</TabsTrigger>
-          <TabsTrigger value="overview">Overview</TabsTrigger>
-          <TabsTrigger value="fitness">Fitness Tracker</TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="input">
-          <Card>
-            <CardContent className="p-4 grid gap-4">
-              <h2 className="text-xl font-bold">Add Teacher</h2>
-              <Input placeholder="Name" name="name" value={teacher.name} onChange={handleTeacherChange} />
-              <Input placeholder="ID" name="id" value={teacher.id} onChange={handleTeacherChange} />
-
-              <h2 className="text-xl font-bold">Add Subject</h2>
-              <Input placeholder="Subject Name" name="name" value={subject.name} onChange={handleSubjectChange} />
-              <Input placeholder="Code" name="code" value={subject.code} onChange={handleSubjectChange} />
-              <Input placeholder="Credits" name="credits" type="number" value={subject.credits} onChange={handleSubjectChange} />
-              <label className="flex items-center gap-2">
-                <Checkbox checked={subject.isLab} onCheckedChange={handleLabChange} /> Lab Subject
-              </label>
-
-              <h2 className="text-xl font-bold">Batch & Section</h2>
-              <Input placeholder="Year" name="year" value={batchSection.year} onChange={handleBatchChange} />
-              <Input placeholder="Section" name="section" value={batchSection.section} onChange={handleBatchChange} />
-              <Button>Submit Data</Button>
-            </CardContent>
-          </Card>
-        </TabsContent>
-
-        <TabsContent value="overview">
-          <Card>
-            <CardContent className="p-4">
-              <h2 className="text-xl font-bold">Input Summary</h2>
-              <p><strong>Teacher:</strong> {teacher.name} ({teacher.id})</p>
-              <p><strong>Subject:</strong> {subject.name} ({subject.code}) - {subject.credits} credits {subject.isLab && "[Lab]"}</p>
-              <p><strong>Batch:</strong> Year {batchSection.year}, Section {batchSection.section}</p>
-            </CardContent>
-          </Card>
-        </TabsContent>
-
-        <TabsContent value="fitness">
-          <Card>
-            <CardContent className="p-4">
-              <h2 className="text-xl font-bold mb-4">Fitness Evolution</h2>
-              <Line data={fitnessChart} />
-            </CardContent>
-          </Card>
-        </TabsContent>
-      </Tabs>
+    <div style={{ padding: '40px' }}>
+      <Tabs tabs={tabs} />
     </div>
   );
 };
