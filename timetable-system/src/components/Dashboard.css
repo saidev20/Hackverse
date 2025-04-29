@@ -1,0 +1,32 @@
+.dashboard-container {
+    padding: 40px;
+    text-align: center;
+    background-color: #f0f4f8;
+    height: 100vh;
+  }
+  
+  .features-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+  }
+  
+  .features-list li {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+  
+  .generate-btn {
+    margin-top: 30px;
+    padding: 12px 24px;
+    background-color: #0077ff;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .generate-btn:hover {
+    background-color: #005ecb;
+  }
