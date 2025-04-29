@@ -1,12 +1,57 @@
-# React + Vite
+# TimeTable Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a full-stack timetable management system built with React (frontend) and Express/SQLite (backend).
 
-Currently, two official plugins are available:
+## Prerequisites
+- Node.js (v18 or above recommended)
+- npm (comes with Node.js)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Getting Started
 
-## Expanding the ESLint configuration
+### 1. Install Dependencies
+Navigate to the project root (where `package.json` is located) and run:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```
+npm install
+```
+
+### 2. Start the Backend Server
+The backend server uses Express and SQLite. To start it:
+
+```
+node backend/server.js
+```
+
+The backend will run on [http://localhost:5000](http://localhost:5000).
+
+### 3. Start the Frontend (React + Vite)
+In a new terminal, from the same directory, run:
+
+```
+npm run dev
+```
+
+The frontend will run on [http://localhost:5173](http://localhost:5173) by default.
+
+### 4. Usage
+- Open [http://localhost:5173](http://localhost:5173) in your browser.
+- Login with:
+  - **Username:** `admin`
+  - **Password:** `admin123`
+- Use the dashboard to add/view teacher details and generate timetables.
+
+## Project Structure
+- `src/` - React frontend source code
+- `backend/` - Express backend and SQLite database
+- `public/` - Static assets
+
+## Notes
+- Make sure both backend and frontend are running for full functionality.
+- The backend will create `timetable.db` automatically if it does not exist.
+
+## Troubleshooting
+- If you change backend code, restart the backend server.
+- If you change frontend code, Vite provides hot reload by default.
+
+---
+Feel free to contribute or raise issues!
