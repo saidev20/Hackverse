@@ -1,18 +1,14 @@
 import React, { useState } from "react";
-import Tabs from "./Tabs";
-import { Line } from "react-chartjs-2";
 import "./Dashboard.css";
+import { Line } from "react-chartjs-2"; // Chart library for fitness tracking
+import Tabs from "./Tabs"; // Assuming Tabs component is for tab navigation
+import AddTeachers from "./AddTeachers"; // Import AddTeachers component
+import ViewTeachers from "./ViewTeachers";
+
 
 const Dashboard = () => {
-  const [teacher, setTeacher] = useState({ name: "", id: "" });
-  const [subject, setSubject] = useState({ name: "", code: "", credits: 0, isLab: false });
-  const [batchSection, setBatchSection] = useState({ year: "", section: "" });
+  const [activeTab, setActiveTab] = useState("Generate TimeTable");
   const [fitnessData, setFitnessData] = useState([10, 8, 5, 2]);
-
-  const handleTeacherChange = (e) => setTeacher({ ...teacher, [e.target.name]: e.target.value });
-  const handleSubjectChange = (e) => setSubject({ ...subject, [e.target.name]: e.target.value });
-  const handleLabChange = () => setSubject({ ...subject, isLab: !subject.isLab });
-  const handleBatchChange = (e) => setBatchSection({ ...batchSection, [e.target.name]: e.target.value });
 
   const fitnessChart = {
     labels: fitnessData.map((_, i) => `Gen ${i + 1}`),
@@ -27,46 +23,62 @@ const Dashboard = () => {
     ],
   };
 
+  // Dashboard content
+  const generateTimeTableContent = (
+    <div className="dashboard-container">
+      <h2>Generate TimeTable</h2>
+      <p>Form for generating the timetable goes here...</p>
+      {/* Add timetable generation logic here */}
+    </div>
+  );
+
+  const recentHistoryContent = (
+    <div className="dashboard-container">
+      <h2>Recent History</h2>
+      <p>Details about recent activity...</p>
+      {/* Display recent actions or history data */}
+    </div>
+  );
+
+  const aboutUsContent = (
+    <div className="dashboard-container">
+      <h2>About Us</h2>
+      <p>Information about the application...</p>
+      {/* About us information */}
+    </div>
+  );
+
+  // New: Add Teacher Details content
+  const addTeacherContent = (
+    <div className="dashboard-container">
+      <h2>Add Teacher Details</h2>
+      <AddTeachers />
+    </div>
+  );
+
   const tabs = {
-    "Admin Input": (
-      <div className="dashboard-container">
-        <h2>Add Teacher</h2>
-        <input placeholder="Name" name="name" value={teacher.name} onChange={handleTeacherChange} />
-        <input placeholder="ID" name="id" value={teacher.id} onChange={handleTeacherChange} />
-
-        <h2>Add Subject</h2>
-        <input placeholder="Subject Name" name="name" value={subject.name} onChange={handleSubjectChange} />
-        <input placeholder="Code" name="code" value={subject.code} onChange={handleSubjectChange} />
-        <input placeholder="Credits" name="credits" type="number" value={subject.credits} onChange={handleSubjectChange} />
-        <label style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <input type="checkbox" checked={subject.isLab} onChange={handleLabChange} /> Lab Subject
-        </label>
-
-        <h2>Batch & Section</h2>
-        <input placeholder="Year" name="year" value={batchSection.year} onChange={handleBatchChange} />
-        <input placeholder="Section" name="section" value={batchSection.section} onChange={handleBatchChange} />
-        <button className="generate-btn">Submit Data</button>
-      </div>
-    ),
-    "Overview": (
-      <div className="dashboard-container">
-        <h2>Input Summary</h2>
-        <p><strong>Teacher:</strong> {teacher.name} ({teacher.id})</p>
-        <p><strong>Subject:</strong> {subject.name} ({subject.code}) - {subject.credits} credits {subject.isLab && "[Lab]"}</p>
-        <p><strong>Batch:</strong> Year {batchSection.year}, Section {batchSection.section}</p>
-      </div>
-    ),
-    "Fitness Tracker": (
-      <div className="dashboard-container">
-        <h2>Fitness Evolution</h2>
-        <Line data={fitnessChart} />
-      </div>
-    ),
+    "Generate TimeTable": generateTimeTableContent,
+    "Recent History": recentHistoryContent,
+    "About Us": aboutUsContent,
+    "Add Teacher Details": addTeacherContent, // New tab
+    "View Teacher Details": <ViewTeachers />,
   };
 
   return (
-    <div style={{ padding: '40px' }}>
-      <Tabs tabs={tabs} />
+    <div className="dashboard">
+      <div className="sidebar">
+        <ul>
+          <li onClick={() => setActiveTab("Generate TimeTable")}>Generate TimeTable</li>
+          <li onClick={() => setActiveTab("Recent History")}>Recent History</li>
+          <li onClick={() => setActiveTab("About Us")}>About Us</li>
+          <li onClick={() => setActiveTab("Add Teacher Details")}>Add Teacher Details</li> {/* New option */}
+          <li onClick={() => setActiveTab("View Teacher Details")}>View Teacher Details</li>
+        </ul>
+      </div>
+
+      <div className="content">
+        {tabs[activeTab]}
+      </div>
     </div>
   );
 };
