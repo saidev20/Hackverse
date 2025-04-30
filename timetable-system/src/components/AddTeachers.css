@@ -16,7 +16,22 @@
   
   .form-group {
     margin-bottom: 15px;
+  align-items: center;
+  gap: 10px;
   }
+
+  .checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Ensures spacing between label and checkbox */
+  }
+  
+  .checkbox-group input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px; /* Keeps space between the label and checkbox */
+  }
+  
   
   .form-group label {
     font-weight: bold;

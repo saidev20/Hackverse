@@ -104,7 +104,7 @@ const AddTeachers = ({ onTeacherAdded }) => {
             required
           />
         </div>
-        <div className="form-group">
+        <div className="form-group checkbox-group">
           <label>Is Lab:</label>
           <input
             type="checkbox"
