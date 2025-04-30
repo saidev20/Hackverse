@@ -1,41 +1,33 @@
+/* ViewTeachers.css */
+
 .view-teachers-container {
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 95%;
-    margin: auto;
-  }
-  
-  .view-teachers-container h2 {
-    margin-bottom: 20px;
-    color: #333;
-    text-align: center;
-  }
-  
-  .teacher-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: #fff;
-  }
-  
-  .teacher-table th,
-  .teacher-table td {
-    padding: 12px 15px;
-    border: 1px solid #ddd;
-    text-align: center;
-  }
-  
-  .teacher-table th {
-    background-color: #4f46e5;
-    color: #fff;
-  }
-  
-  .teacher-table tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-  
-  .teacher-table tr:hover {
-    background-color: #e0e7ff;
-  }
-  
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  max-width: 1000px;
+  margin: 20px auto;
+  color: black;
+}
+
+.view-teachers-container h2 {
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+.teacher-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+}
+
+.teacher-table th,
+.teacher-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+
+.teacher-table th {
+  background-color: #f2f2f2;
+}

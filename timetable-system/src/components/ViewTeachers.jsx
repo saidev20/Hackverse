@@ -1,27 +1,40 @@
 // ViewTeachers.jsx
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, forwardRef, useImperativeHandle } from "react";
+import './ViewTeachers.css';
 
-const ViewTeachers = () => {
+
+const ViewTeachers = forwardRef((props, ref) => {
   const [teachers, setTeachers] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const fetchTeachers = async () => {
+    setLoading(true);
     try {
       const res = await fetch("http://localhost:5000/api/teachers");
+      console.log("Teachers:", teachers);
       const data = await res.json();
-      setTeachers(data);
+      // Convert isLab to boolean for each teacher
+      const processed = data.map((t) => ({ ...t, isLab: Boolean(t.isLab) }));
+      setTeachers(processed);
     } catch (err) {
       console.error("Error fetching teachers:", err);
     }
+    setLoading(false);
   };
+
+  useImperativeHandle(ref, () => ({
+    refresh: fetchTeachers
+  }));
 
   useEffect(() => {
     fetchTeachers();
   }, []);
 
   return (
-    <div className="dashboard-container">
+    <div className="view-teachers-container">
       <h2>All Teacher Details</h2>
-      {teachers.length === 0 ? (
+      <button onClick={fetchTeachers} style={{marginBottom: 12}}>Refresh</button>
+      {loading ? <p>Loading...</p> : teachers.length === 0 ? (
         <p>No teachers found.</p>
       ) : (
         <table className="teacher-table">
@@ -51,6 +64,6 @@ const ViewTeachers = () => {
       )}
     </div>
   );
-};
+});
 
 export default ViewTeachers;
