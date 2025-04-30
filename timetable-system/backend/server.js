@@ -73,7 +73,26 @@ app.get("/api/teachers", (req, res) => {
       }
     });
   });
-  
+ // DELETE a teacher by id (use database's primary key)
+app.delete("/api/teachers/:id", (req, res) => {
+  const { id } = req.params;
+
+  db.run(`DELETE FROM teachers WHERE id = ?`, [id], function (err) {
+    if (err) {
+      console.error("Delete error:", err.message);
+      return res.status(500).json({ error: "Failed to delete teacher" });
+    }
+
+    if (this.changes === 0) {
+      return res.status(404).json({ message: "Teacher not found" });
+    }
+
+    res.json({ message: "Teacher deleted successfully" });
+  });
+});
+
+
+
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);

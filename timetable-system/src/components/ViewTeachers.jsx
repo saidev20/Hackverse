@@ -21,7 +21,24 @@ const ViewTeachers = forwardRef((props, ref) => {
     }
     setLoading(false);
   };
-
+  const handleDelete = async (teacherId) => {
+    if (!window.confirm("Are you sure you want to delete this teacher?")) return;
+  
+    try {
+      const res = await fetch(`http://localhost:5000/api/teachers/${teacherId}`, {
+        method: "DELETE",
+      });
+  
+      if (res.ok) {
+        setTeachers(prev => prev.filter(t => t.teacherId !== teacherId));
+      } else {
+        console.error("Failed to delete teacher");
+      }
+    } catch (err) {
+      console.error("Error deleting teacher:", err);
+    }
+  };
+  
   useImperativeHandle(ref, () => ({
     refresh: fetchTeachers
   }));
@@ -46,6 +63,7 @@ const ViewTeachers = forwardRef((props, ref) => {
               <th>Subject</th>
               <th>Credits</th>
               <th>Is Lab</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -57,6 +75,14 @@ const ViewTeachers = forwardRef((props, ref) => {
                 <td>{teacher.subjectName}</td>
                 <td>{teacher.credits}</td>
                 <td>{teacher.isLab ? "Yes" : "No"}</td>
+                <td>
+                  <button
+                    onClick={() => handleDelete(teacher.teacherId)}
+                    style={{ backgroundColor: "red", color: "white", border: "none", padding: "5px 10px", cursor: "pointer", borderRadius: 5 }}
+                  >
+                    Delete
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
